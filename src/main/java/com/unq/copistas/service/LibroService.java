@@ -49,4 +49,11 @@ public class LibroService {
         final Libro updatedLibro = libroRepository.save(libro);
         return updatedLibro;
     }
+
+
+    public Libro deleteLibro(Long libroId) throws ResourceNotFoundException {
+        Libro libro = libroRepository.findById(libroId).orElseThrow(()-> new ResourceNotFoundException("Libro no encontrado con la id " + libroId));
+        libroRepository.delete(libro);
+        return libro;
+    }
 }
