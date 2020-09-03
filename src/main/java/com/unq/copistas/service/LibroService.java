@@ -8,6 +8,7 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.lang.module.ResolutionException;
 import java.util.Date;
 import java.util.List;
@@ -18,21 +19,24 @@ public class LibroService {
     @Autowired
     private LibroRepository libroRepository;
 
+    @Transactional
     public Libro crearLibro(Libro libro){
         return libroRepository.save(libro);
     }
 
+    @Transactional
     public List<Libro> getAllLibros(){
         return libroRepository.findAll();
     }
 
+    @Transactional
     public Libro getUserById(Long libroId) throws ResourceNotFoundException {
         Libro libro = libroRepository.findById(libroId).orElseThrow(()-> new ResourceNotFoundException("libro no encontrado con la id" + libroId));
         return libro;
 
     }
 
-
+    @Transactional
     public Libro updatelibro(Long libroId, Libro libroDetails) throws ResourceNotFoundException {
         Libro libro =
                 libroRepository
@@ -50,10 +54,16 @@ public class LibroService {
         return updatedLibro;
     }
 
-
+    @Transactional
     public Libro deleteLibro(Long libroId) throws ResourceNotFoundException {
         Libro libro = libroRepository.findById(libroId).orElseThrow(()-> new ResourceNotFoundException("Libro no encontrado con la id " + libroId));
         libroRepository.delete(libro);
         return libro;
+    }
+
+    @Transactional
+    public List<Libro> buscarLibroPorTitulo(String titulo) {
+        List<Libro> libros = libroRepository.findAllLibrosConTitulo(titulo);
+        return libros;
     }
 }

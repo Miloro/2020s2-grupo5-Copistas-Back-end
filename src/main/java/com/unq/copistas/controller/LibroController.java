@@ -51,8 +51,10 @@ public class LibroController {
         Map<String,Boolean> response  = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
 
-
-
+    @GetMapping("/libro")
+    public List<Libro> buscarLibroPorNombre(@RequestParam(value="titulo") String titulo){
+        return libroService.buscarLibroPorTitulo(titulo);
     }
 }
