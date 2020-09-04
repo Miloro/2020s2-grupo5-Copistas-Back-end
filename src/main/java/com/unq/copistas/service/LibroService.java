@@ -4,13 +4,10 @@ package com.unq.copistas.service;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.Libro;
 import com.unq.copistas.repository.LibroRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.lang.module.ResolutionException;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -63,7 +60,7 @@ public class LibroService {
 
     @Transactional
     public List<Libro> buscarLibroPorTitulo(String titulo) {
-        List<Libro> libros = libroRepository.findAllLibrosConTitulo(titulo);
+        List<Libro> libros = libroRepository.findAllByTituloContaining(titulo);
         return libros;
     }
 }
