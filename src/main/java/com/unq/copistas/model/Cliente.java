@@ -35,8 +35,7 @@ public class Cliente {
 
     }
 
-    public Cliente(long id, String nombre, String apellido, Integer dni, Integer cuilORcuit, String domicilio, String ciudad, String provincia, Integer telefonoFijo, Integer telefonoMovil, String correoElectronico, LocalDate  fechaDeNacimiento, Sexo sexo, String nivelDiscapacidadVisual) {
-        this.id = id;
+    public Cliente( String nombre, String apellido, Integer dni, Integer cuilORcuit, String domicilio, String ciudad, String provincia, Integer telefonoFijo, Integer telefonoMovil, String correoElectronico, LocalDate  fechaDeNacimiento, Sexo sexo, String nivelDiscapacidadVisual) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
