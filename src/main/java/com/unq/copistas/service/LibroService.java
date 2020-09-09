@@ -28,7 +28,7 @@ public class LibroService {
 
     @Transactional
     public Libro getUserById(Long libroId) throws ResourceNotFoundException {
-        Libro libro = libroRepository.findById(libroId).orElseThrow(()-> new ResourceNotFoundException("libro no encontrado con la id" + libroId));
+        Libro libro = libroRepository.findById(libroId).orElseThrow(() -> new ResourceNotFoundException("libro no encontrado con la id" + libroId));
         return libro;
 
     }
@@ -38,7 +38,7 @@ public class LibroService {
         Libro libro =
                 libroRepository
                         .findById(libroId)
-                        .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + libroId));
+                        .orElseThrow(() -> new ResourceNotFoundException("Libro no encontrado con la id :: " + libroId));
 
         libro.setTitulo(libroDetails.getTitulo());
         libro.setNombreAutor(libroDetails.getNombreAutor());
