@@ -54,4 +54,8 @@ public class HojaService {
         return hoja;
     }
 
+    public Hoja buscarHojaDeRutaPorIdDeLibro(Long libroId) {
+        Hoja hoja = hojaDeRutaRepository.findAllByLibro_Id(libroId);
+        return hoja;
+    }
 }
