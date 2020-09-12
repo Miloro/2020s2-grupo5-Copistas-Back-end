@@ -1,5 +1,6 @@
 package com.unq.copistas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Iteracion {
     private EstadoDeIteracion tareaAsignada;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Hoja hoja;
 
     public Iteracion(String personaEncargada, LocalDate fechaAsignacion, EstadoDeIteracion tareaAsignada) {

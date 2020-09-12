@@ -35,8 +35,8 @@ public class FakeData implements ApplicationRunner {
         Cliente cliente2 = new Cliente("cliente2","cliente2",2,2,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,"cliente2");
         clienteRepository.save(cliente1);
         clienteRepository.save(cliente2);
-        Libro libro1 = new Libro("libro1","libro1","libro1","libro1","libro1","libro1","libro1");
-        Libro libro2 = new Libro("libro2","libro2","libro2","libro2","libro2","libro2","libro2");
+        Libro libro1 = new Libro("el señor de los anillos la comunidad del anillo","John Ronald Reuel","Tolkien ","iguanita","1412","chino antiguo","fantasia");
+        Libro libro2 = new Libro("la llamada de cthulhu","Howard Phillips","Lovecraft","raspadita","2","runas nordicas","terror cosmico");
 
         libroRepository.save(libro1);
         libroRepository.save(libro2);

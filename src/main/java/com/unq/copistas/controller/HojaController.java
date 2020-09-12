@@ -58,6 +58,5 @@ public class HojaController {
     public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@PathVariable(value = "id") Long libroId)throws Exception{
         Hoja hoja = hojaService.buscarHojaDeRutaPorIdDeLibro(libroId);
         return ResponseEntity.ok().body(hoja);
-
     }
 }

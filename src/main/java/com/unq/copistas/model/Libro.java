@@ -99,11 +99,4 @@ public class Libro {
         this.categoria = categoria;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                '}';
-    }
 }
