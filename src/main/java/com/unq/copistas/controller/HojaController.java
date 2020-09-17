@@ -2,11 +2,12 @@ package com.unq.copistas.controller;
 
 import com.unq.copistas.controller.dtos.HojaDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
+import com.unq.copistas.model.Cliente;
 import com.unq.copistas.model.Hoja;
+import com.unq.copistas.model.Libro;
 import com.unq.copistas.service.ClienteService;
 import com.unq.copistas.service.HojaService;
 import com.unq.copistas.service.LibroService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +26,6 @@ public class HojaController {
     private HojaService hojaService;
 
     @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
     ClienteService clienteService;
 
     @Autowired
@@ -35,13 +33,16 @@ public class HojaController {
 
 
     @PostMapping("/hojaderuta")
-    public HojaDTO crearHojaDeRuta(@Valid @RequestBody HojaDTO hojaDTO){
-        Hoja hoja = convertToEntity(hojaDTO);
-        clienteService.createCliente(hoja.getDestinatario());
-        clienteService.createCliente(hoja.getSolicitante());
-        libroService.crearLibro(hoja.getLibro());
-        Hoja hojaCreated = hojaService.crearHojaDeRuta(hoja);
-        return convertToDto(hojaCreated);
+    public Hoja crearHojaDeRuta(@Valid @RequestBody HojaDTO hojaDTO) throws ResourceNotFoundException {
+
+
+        Cliente destinatario =  clienteService.getClientePorId(hojaDTO.getDestinatario_id());
+        Cliente solicitante =  clienteService.getClientePorId(hojaDTO.getSolicitante_id());
+        Libro libro = libroService.getLibroById(hojaDTO.getLibro_id());
+
+        Hoja hojaNueva = new Hoja(solicitante,destinatario,libro);
+
+        return hojaService.crearHojaDeRuta(hojaNueva);
     }
 
     @GetMapping("/hojaderutas")
@@ -52,9 +53,9 @@ public class HojaController {
     }
 
     @GetMapping("hojaderuta/{id}")
-    public ResponseEntity<HojaDTO> getHojaDeRutaPorId(@PathVariable(value = "id") Long hojaDeRutaId) throws ResourceNotFoundException {
-        HojaDTO hojaDTO = convertToDto(hojaService.getUserById(hojaDeRutaId));
-        return ResponseEntity.ok().body(hojaDTO);
+    public ResponseEntity<Hoja> getHojaDeRutaPorId(@PathVariable(value = "id") Long hojaDeRutaId) throws ResourceNotFoundException {
+        Hoja hoja = hojaService.getUserById(hojaDeRutaId);
+        return ResponseEntity.ok().body(hoja);
     }
 
     @PutMapping("/hojaderuta/{id}")
@@ -78,21 +79,5 @@ public class HojaController {
     public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@PathVariable(value = "id") Long libroId)throws Exception{
         Hoja hoja = hojaService.buscarHojaDeRutaPorIdDeLibro(libroId);
         return ResponseEntity.ok().body(hoja);
-    }
-
-    private HojaDTO convertToDto(Hoja hoja) {
-        HojaDTO hojaDTO = modelMapper.map(hoja, HojaDTO.class);
-        hojaDTO.setSolicitante(hoja.getSolicitante());
-        hojaDTO.setDestinatario(hoja.getDestinatario());
-        hojaDTO.setLibro(hoja.getLibro());
-        return hojaDTO;
-    }
-
-    private Hoja convertToEntity(HojaDTO hojaDTO) {
-        Hoja hoja = modelMapper.map(hojaDTO, Hoja.class);
-        hoja.setSolicitante(hojaDTO.getSolicitanteConverted());
-        hoja.setDestinatario(hojaDTO.getDestinatarioConverted());
-        hoja.setLibro(hojaDTO.getLibroConverted());
-        return hoja;
     }
 }

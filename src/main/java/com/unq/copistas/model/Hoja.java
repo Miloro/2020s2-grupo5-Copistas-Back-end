@@ -34,8 +34,24 @@ public class Hoja {
         this.libro = libro;
         this.historialDeEstado = historialDeEstado;
     }
+
     public Hoja() {
     }
+
+    public Hoja(Cliente solicitante, Cliente destinatario, Libro libro) {
+        this.solicitante = solicitante;
+        this.destinatario = destinatario;
+        this.libro = libro;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 
     public Cliente getSolicitante() {
         return solicitante;

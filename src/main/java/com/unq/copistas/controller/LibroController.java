@@ -32,7 +32,7 @@ public class LibroController {
 
     @GetMapping("libro/{id}")
     public ResponseEntity<Libro> getLibroPorId(@PathVariable(value = "id") Long libroId) throws ResourceNotFoundException{
-        Libro libro = libroService.getUserById(libroId);
+        Libro libro = libroService.getLibroById(libroId);
         return ResponseEntity.ok().body(libro);
     }
 
