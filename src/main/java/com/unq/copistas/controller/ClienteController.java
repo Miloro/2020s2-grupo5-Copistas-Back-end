@@ -33,9 +33,9 @@ public class ClienteController {
         return ResponseEntity.ok().body(cliente);
     }
 
-    @GetMapping("cliente/{dni}")
-    public ResponseEntity<Cliente> getClientePorDni(@PathVariable(value = "dni") Long ClienteDni) throws ResourceNotFoundException{
-        Cliente cliente = clienteService.getClienteByDni(ClienteDni);
+    @GetMapping("cliente/dni/{dni}")
+    public ResponseEntity<Cliente> getClientePorDni(@PathVariable(value = "dni") Long clienteDni) throws ResourceNotFoundException{
+        Cliente cliente = clienteService.getClienteByDni(clienteDni);
         return ResponseEntity.ok().body(cliente);
     }
 
