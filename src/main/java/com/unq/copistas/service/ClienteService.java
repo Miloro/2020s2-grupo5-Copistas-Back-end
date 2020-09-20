@@ -63,4 +63,10 @@ public class ClienteService {
         return cliente;
 
     }
+
+    @Transactional
+    public List<Cliente> buscarClientePorDni(int dni) {
+        List<Cliente> clientes = clienteRepository.findAllByDniContaining(dni);
+        return clientes;
+    }
 }
