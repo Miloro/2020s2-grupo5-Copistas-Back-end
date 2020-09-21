@@ -33,11 +33,7 @@ public class ClienteController {
         return ResponseEntity.ok().body(cliente);
     }
 
-    @GetMapping("cliente/dni/{dni}")
-    public ResponseEntity<Cliente> getClientePorDni(@PathVariable(value = "dni") Long clienteDni) throws ResourceNotFoundException{
-        Cliente cliente = clienteService.getClienteByDni(clienteDni);
-        return ResponseEntity.ok().body(cliente);
-    }
+
 
     @PutMapping("/cliente/{id}")
     public ResponseEntity<Cliente> updateCliente(
@@ -55,5 +51,11 @@ public class ClienteController {
         Map<String,Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
+
+    @GetMapping("/cliente")
+    public List <Cliente> buscarClientePorDni(@RequestParam(value="dni") int dni) {
+
+        return clienteService.buscarClientePorDni(dni);
     }
 }

@@ -31,12 +31,6 @@ public class ClienteService {
         Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() -> new ResourceNotFoundException("cliente no encontrado con la id" + clienteId));
         return cliente;
     }
-    @Transactional
-    public Cliente getClienteByDni(long clienteDni)  throws ResourceNotFoundException {
-        Cliente cliente = clienteRepository.findById(clienteDni).orElseThrow(() -> new ResourceNotFoundException("cliente no encontrado con el dni" + clienteDni));
-        return cliente;
-    }
-
 
     public Cliente updateCliente(Long clienteId, Cliente clienteDetails) throws ResourceNotFoundException {
         Cliente cliente =
@@ -68,10 +62,8 @@ public class ClienteService {
         return cliente;
 
     }
-
     @Transactional
     public List<Cliente> buscarClientePorDni(int dni) {
-        List<Cliente> clientes = clienteRepository.findAllByDniContaining(dni);
-        return clientes;
+        return clienteRepository.findAllByDniContaining(dni);
     }
 }
