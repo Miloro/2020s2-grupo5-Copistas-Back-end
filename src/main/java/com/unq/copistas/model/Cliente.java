@@ -19,7 +19,7 @@ public class Cliente {
 
     private String nombre;
     private String apellido;
-    private Integer dni;
+    private int dni;
     private Integer cuilORcuit;
     private String domicilio;
     private String ciudad;
