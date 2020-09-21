@@ -31,8 +31,8 @@ public class FakeData implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Cliente cliente1 = new Cliente("cliente1","cliente1",2,2,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,"cliente1");
-        Cliente cliente2 = new Cliente("cliente2","cliente2",2,2,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,"cliente2");
+        Cliente cliente1 = new Cliente("cliente1","cliente1",123,2,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,"cliente1");
+        Cliente cliente2 = new Cliente("cliente2","cliente2",345,2,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,"cliente2");
         clienteRepository.save(cliente1);
         clienteRepository.save(cliente2);
         Libro libro1 = new Libro("el señor de los anillos la comunidad del anillo","John Ronald Reuel","Tolkien ","iguanita","1412","chino antiguo","fantasia");

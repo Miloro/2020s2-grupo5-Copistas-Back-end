@@ -50,4 +50,10 @@ public class ClienteController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+
+    @GetMapping("/cliente")
+    public List<Cliente> buscarClientePorDNI(@RequestParam(value="dni") Integer dni){
+        Integer dgasdg = dni;
+        return clienteService.buscarClientePorDni(dni);
+    }
 }
