@@ -4,12 +4,10 @@ package com.unq.copistas.service;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.Libro;
 import com.unq.copistas.repository.LibroRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.module.ResolutionException;
-import java.util.Date;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -18,26 +16,29 @@ public class LibroService {
     @Autowired
     private LibroRepository libroRepository;
 
+    @Transactional
     public Libro crearLibro(Libro libro){
         return libroRepository.save(libro);
     }
 
+    @Transactional
     public List<Libro> getAllLibros(){
         return libroRepository.findAll();
     }
 
-    public Libro getUserById(Long libroId) throws ResourceNotFoundException {
-        Libro libro = libroRepository.findById(libroId).orElseThrow(()-> new ResourceNotFoundException("libro no encontrado con la id" + libroId));
+    @Transactional
+    public Libro getLibroById(Long libroId) throws ResourceNotFoundException {
+        Libro libro = libroRepository.findById(libroId).orElseThrow(() -> new ResourceNotFoundException("libro no encontrado con la id" + libroId));
         return libro;
 
     }
 
-
+    @Transactional
     public Libro updatelibro(Long libroId, Libro libroDetails) throws ResourceNotFoundException {
         Libro libro =
                 libroRepository
                         .findById(libroId)
-                        .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + libroId));
+                        .orElseThrow(() -> new ResourceNotFoundException("Libro no encontrado con la id :: " + libroId));
 
         libro.setTitulo(libroDetails.getTitulo());
         libro.setNombreAutor(libroDetails.getNombreAutor());
@@ -48,5 +49,18 @@ public class LibroService {
         libro.setCategoria(libroDetails.getCategoria());
         final Libro updatedLibro = libroRepository.save(libro);
         return updatedLibro;
+    }
+
+    @Transactional
+    public Libro deleteLibro(Long libroId) throws ResourceNotFoundException {
+        Libro libro = libroRepository.findById(libroId).orElseThrow(()-> new ResourceNotFoundException("Libro no encontrado con la id " + libroId));
+        libroRepository.delete(libro);
+        return libro;
+    }
+
+    @Transactional
+    public List<Libro> buscarLibroPorTitulo(String titulo) {
+        List<Libro> libros = libroRepository.findAllByTituloContaining(titulo);
+        return libros;
     }
 }

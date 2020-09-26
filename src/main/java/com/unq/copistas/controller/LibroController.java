@@ -8,9 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class LibroController {
 
@@ -29,7 +32,7 @@ public class LibroController {
 
     @GetMapping("libro/{id}")
     public ResponseEntity<Libro> getLibroPorId(@PathVariable(value = "id") Long libroId) throws ResourceNotFoundException{
-        Libro libro = libroService.getUserById(libroId);
+        Libro libro = libroService.getLibroById(libroId);
         return ResponseEntity.ok().body(libro);
     }
 
@@ -41,5 +44,18 @@ public class LibroController {
         System.out.print(libroId);
         final Libro updatedLibro = libroService.updatelibro(libroId, libroDetails);
         return ResponseEntity.ok(updatedLibro);
+    }
+
+    @DeleteMapping("/libro/{id}")
+    public Map<String,Boolean> deleteLibro(@PathVariable(value = "id") Long libroId) throws  Exception{
+        Libro libro = libroService.deleteLibro(libroId);
+        Map<String,Boolean> response  = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
+
+    @GetMapping("/libro")
+    public List<Libro> buscarLibroPorNombre(@RequestParam(value="titulo") String titulo){
+        return libroService.buscarLibroPorTitulo(titulo);
     }
 }

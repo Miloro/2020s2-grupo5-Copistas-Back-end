@@ -21,8 +21,7 @@ public class Libro {
     private String idioma;
     private String categoria;
 
-    public Libro(long id, String titulo, String nombreAutor, String apellidoAutor, String editorial, String edicion, String idioma, String categoria) {
-        this.id = id;
+    public Libro( String titulo, String nombreAutor, String apellidoAutor, String editorial, String edicion, String idioma, String categoria) {
         this.titulo = titulo;
         this.nombreAutor = nombreAutor;
         this.apellidoAutor = apellidoAutor;
@@ -100,11 +99,4 @@ public class Libro {
         this.categoria = categoria;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                '}';
-    }
 }
