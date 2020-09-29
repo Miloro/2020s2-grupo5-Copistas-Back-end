@@ -30,20 +30,20 @@ public class FakeData implements ApplicationRunner {
     }
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
 
-        Cliente cliente1 = new Cliente("cliente1","cliente1",111,1,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,"cliente1");
-        Cliente cliente2 = new Cliente("cliente2","cliente2",222,2,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,"cliente2");
-        Cliente cliente3 = new Cliente("cliente3","cliente3",333,3,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,"cliente1");
-        Cliente cliente4 = new Cliente("cliente4","cliente4",444,4,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,"cliente2");
-        Cliente cliente5 = new Cliente("cliente5","cliente5",555,5,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,"cliente1");
-        Cliente cliente6 = new Cliente("cliente6","cliente6",666,6,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,"cliente2");
-        Cliente cliente7 = new Cliente("cliente7","cliente7",777,7,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,"cliente1");
-        Cliente cliente8 = new Cliente("cliente8","cliente8",888,8,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,"cliente2");
-        Cliente cliente9 = new Cliente("cliente9","cliente9",999,9,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,"cliente1");
-        Cliente cliente10 = new Cliente("cliente10","cliente10",101010,10,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,"cliente2");
-        Cliente cliente11 = new Cliente("cliente11","cliente11",111111,11,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,"cliente1");
-        Cliente cliente12 = new Cliente("cliente12","cliente12",121212,12,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,"cliente2");
+        Cliente cliente1 = new Cliente("cliente1","cliente1",111,1,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.TOTAL);
+        Cliente cliente2 = new Cliente("cliente2","cliente2",222,2,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.PARCIAL);
+        Cliente cliente3 = new Cliente("cliente3","cliente3",333,3,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.PARCIAL);
+        Cliente cliente5 = new Cliente("cliente5","cliente5",555,5,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.NINGUNA);
+        Cliente cliente4 = new Cliente("cliente4","cliente4",444,4,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.NINGUNA);
+        Cliente cliente6 = new Cliente("cliente6","cliente6",666,6,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.NINGUNA);
+        Cliente cliente7 = new Cliente("cliente7","cliente7",777,7,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
+        Cliente cliente8 = new Cliente("cliente8","cliente8",888,8,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.TOTAL);
+        Cliente cliente9 = new Cliente("cliente9","cliente9",999,9,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.PARCIAL);
+        Cliente cliente10 = new Cliente("cliente10","cliente10",101010,10,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.PARCIAL);
+        Cliente cliente11 = new Cliente("cliente11","cliente11",111111,11,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
+        Cliente cliente12 = new Cliente("cliente12","cliente12",121212,12,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
 
         clienteRepository.save(cliente1);
         clienteRepository.save(cliente2);

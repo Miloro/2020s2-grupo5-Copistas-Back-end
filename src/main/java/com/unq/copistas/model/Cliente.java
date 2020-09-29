@@ -3,9 +3,8 @@ package com.unq.copistas.model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Calendar;
+
 
 
 @Entity
@@ -29,13 +28,13 @@ public class Cliente {
     private String correoElectronico;
     private LocalDate fechaDeNacimiento;
     private Sexo sexo;
-    private String nivelDiscapacidadVisual;
+    private NivelDiscapacidadVisual nivelDiscapacidadVisual;
 
     public Cliente(){
 
     }
 
-    public Cliente( String nombre, String apellido, Integer dni, Integer cuilORcuit, String domicilio, String ciudad, String provincia, Integer telefonoFijo, Integer telefonoMovil, String correoElectronico, LocalDate  fechaDeNacimiento, Sexo sexo, String nivelDiscapacidadVisual) {
+    public Cliente( String nombre, String apellido, Integer dni, Integer cuilORcuit, String domicilio, String ciudad, String provincia, Integer telefonoFijo, Integer telefonoMovil, String correoElectronico, LocalDate  fechaDeNacimiento, Sexo sexo, NivelDiscapacidadVisual nivelDiscapacidadVisual) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -155,11 +154,11 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public String getNivelDiscapacidadVisual() {
+    public NivelDiscapacidadVisual getNivelDiscapacidadVisual() {
         return nivelDiscapacidadVisual;
     }
 
-    public void setNivelDiscapacidadVisual(String nivelDiscapacidadVisual) {
+    public void setNivelDiscapacidadVisual(NivelDiscapacidadVisual nivelDiscapacidadVisual) {
         this.nivelDiscapacidadVisual = nivelDiscapacidadVisual;
     }
 }
