@@ -1,7 +1,8 @@
 package com.unq.copistas.controller;
 
 
-import com.unq.copistas.controller.dtos.DashboardSexoDTO;
+import com.unq.copistas.controller.dtos.DashBoardDataDTO;
+import com.unq.copistas.controller.dtos.DashboardNivelCegueraDTO;
 import com.unq.copistas.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,8 +19,11 @@ public class DashboardController {
     private ClienteService clienteService;
 
     @GetMapping("/dashboard")
-    public DashboardSexoDTO getDashboard(){
-        return clienteService.getCantidadDeClientesFemeninos();
+    public DashBoardDataDTO getDashboard(){
+        DashBoardDataDTO dashBoardDataDTO = new DashBoardDataDTO();
+        dashBoardDataDTO.setDashboardSexoDTO(clienteService.getCantidadDeClientesPorSexo());
+        dashBoardDataDTO.setDashboardNivelCegueraDTO(clienteService.getCantidadDeNivelesDeCeguera());
+        return dashBoardDataDTO;
 
     }
 }

@@ -27,7 +27,10 @@ public class Cliente {
     private Integer telefonoMovil;
     private String correoElectronico;
     private LocalDate fechaDeNacimiento;
+
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
+    @Enumerated(EnumType.STRING)
     private NivelDiscapacidadVisual nivelDiscapacidadVisual;
 
     public Cliente(){

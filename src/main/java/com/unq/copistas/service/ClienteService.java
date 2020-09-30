@@ -1,5 +1,6 @@
 package com.unq.copistas.service;
 
+import com.unq.copistas.controller.dtos.DashboardNivelCegueraDTO;
 import com.unq.copistas.controller.dtos.DashboardSexoDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.Cliente;
@@ -69,9 +70,12 @@ public class ClienteService {
         return clienteRepository.findAllByDni(dni);
     }
 
-    public DashboardSexoDTO getCantidadDeClientesFemeninos() {
+    public DashboardSexoDTO getCantidadDeClientesPorSexo() {
         return clienteRepository.DashboardDTOCountbySexo();
     }
 
 
+    public DashboardNivelCegueraDTO getCantidadDeNivelesDeCeguera() {
+        return clienteRepository.DashboardDTOCountbyNivelCeguera();
+    }
 }
