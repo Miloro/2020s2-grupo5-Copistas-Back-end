@@ -26,10 +26,10 @@ public class HojaController {
     private HojaService hojaService;
 
     @Autowired
-    ClienteService clienteService;
+    private ClienteService clienteService;
 
     @Autowired
-    LibroService libroService;
+    private LibroService libroService;
 
 
     @PostMapping("/hojaderuta")
@@ -76,7 +76,7 @@ public class HojaController {
     }
 
     @GetMapping("hojaderuta/libro/{id}")
-    public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@PathVariable(value = "id") Long libroId)throws Exception{
+    public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@PathVariable(value = "id") Long libroId){
         Hoja hoja = hojaService.buscarHojaDeRutaPorIdDeLibro(libroId);
         return ResponseEntity.ok().body(hoja);
     }
