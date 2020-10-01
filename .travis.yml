@@ -1,22 +1,25 @@
-#Se define los recipientes de las notificaciones
-##notifications:
-##Definicion de lenguaje y version de VM
 language: java
 sudo: true
 dist: trusty
 jdk: oraclejdk11
-#jdk: openjdk11
-
 env:
+  matrix:
   - MAVEN_VERSION=3.2.5
   - MAVEN_VERSION=3.3.9
+  global:
+    secure: heSQUxJr2/Zf9dp0AADW2uhuuN+EFfntG3NWbpYSCKoGQRVTqXfxFlN0gYFWbCT4aqq61WgJKuYmLLkq6v+mODpmbhfvBIUBjq2IrMhnB3tEsO6Lar8HLF9BSSFYadBblysGdl49MDrhGpDqchCuKLrNQmGKmuuiOKnwIqCbIJkGnnG34FE3UeqN7kCG3ssWl0lFnrIcG9diZRFbt6gnEwxt8zmLZNmK+CFw7gNJNnfCLIYJKMtdpKhnNkb4m8WnptZjnoeaa8njC9l/6aoPnNkBfcaZOm7+29E0l1zjO9kexzJUh26tQk/hTF0D4Zpahh5cL2yLYhVk9QGuWobNvxwZghvwDRwRCFlf8Wez1TWv5Gld9gqMvu8Qt8zDZAfGL/TmrOB3Zt37AdZirkM3trlDWraJWMna7WjwAvWq2nCOlxHUgZ/XRFP/4f6PByPp9U2h0aGPz2vyjg076N2eU+ttyLF9u1BR904/NiVZsScV1K6AAbc7qmCiqQ+rF3TCIfI2VccoLtvxTjNlG4c1bg/JHBviDvwoCm5Y0aCAIHf0WyIOcDZrlFUegjiu+1eduYbjia4eWCxT/0Vz2AT1VZoZr+WJMxkOBGlCkMJX5N1z0JzwxF7qvkRyjLlaLFJvUlqbru8TEulbUhcN9u6ef4n0vJiSWh1jOvz6rn3FC6A=
 
-#Se Define guardar en cache la carpeta de maven
-cache:
-  directories:
-      - $HOME/.m2
-install:
-          - "mvn -N io.takari:maven:wrapper -Dmaven=${MAVEN_VERSION}"
+# Test & Build SpringBoot app
+script:
+  - mvn test
+  - mvn clean package
 
-before_script:
-          - mvn clean install -Dmaven.compiler.target=1.8 -Dmaven.compiler.source=1.8 -Dmaven.javadoc.skip=true -B -V
+# Allow Travis to help deploy the app on Heroku
+deploy:
+  provider: heroku
+  api-key:
+      secure: "$HEROKU_API_KEY"
+  app: libraille-backend
+  #on:
+  #   tags: true
+  #   repo: "$IMAGE_NAME"    
