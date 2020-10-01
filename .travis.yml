@@ -1,0 +1,9 @@
+#Se define los recipientes de las notificaciones
+##notifications:
+##Definicion de lenguaje y version de VM
+language: java
+jdk: openjdk11
+#
+#env:
+#  - MAVEN_VERSION=3.2.5
+#  - MAVEN_VERSION=3.3.9
