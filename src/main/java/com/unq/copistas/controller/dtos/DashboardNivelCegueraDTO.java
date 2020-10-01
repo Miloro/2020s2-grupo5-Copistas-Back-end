@@ -13,11 +13,9 @@ public class DashboardNivelCegueraDTO {
     public long getParcial() {
         return parcial;
     }
-
     public void setParcial(long parcial) {
         this.parcial = parcial;
     }
-
     public long getTotal() {
         return total;
     }

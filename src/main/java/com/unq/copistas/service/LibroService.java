@@ -1,10 +1,12 @@
 package com.unq.copistas.service;
 
 
+import com.unq.copistas.controller.dtos.DashboardCantidadPagadosDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.Libro;
 import com.unq.copistas.repository.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -62,5 +64,10 @@ public class LibroService {
     public List<Libro> buscarLibroPorTitulo(String titulo) {
         List<Libro> libros = libroRepository.findAllByTituloContaining(titulo);
         return libros;
+    }
+
+    @Transactional
+    public DashboardCantidadPagadosDTO getCantidadDeLibrosPagados() {
+        return libroRepository.DashboardDTOCountbyLibrosPagados();
     }
 }

@@ -58,13 +58,13 @@ public class FakeData implements ApplicationRunner {
         clienteRepository.save(cliente11);
         clienteRepository.save(cliente12);
 
-        Libro libro1 = new Libro("El señor de los anillos la comunidad del anillos","John Ronald Reuel","Tolkien ","español","1412","chino antiguo","fantasia",false,false);
-        Libro libro2 = new Libro("La llamada de Cthulhu","Howard Phillips","Lovecraft","raspadita","2","español","terror cosmico",false,false);
-        Libro libro3 = new Libro("El caballero de la armadura oxidada","Robert","Fisher","raspadita","2","español","Fiction",false,false);
-        Libro libro4 = new Libro("El fin de la eternidad","Isaac","Asimov","raspadita","2","ingles","Science Fiction",false,false);
-        Libro libro5 = new Libro("Los tigres de Malacia","Emilio","Salgari","raspadita","2","ingles","Fiction",false,false);
-        Libro libro6 = new Libro("El principito","Antoine ","de Saint-Exupéry","raspadita","2","italiano","literatura infantil",false,false);
-        Libro libro7 = new Libro("Rayuela","Julio","Cortázar","raspadita","2","italiano","Fiction",false,false);
+        Libro libro1 = new Libro("El señor de los anillos la comunidad del anillos","John Ronald Reuel","Tolkien ","español","1412","chino antiguo","fantasia",true,true);
+        Libro libro2 = new Libro("La llamada de Cthulhu","Howard Phillips","Lovecraft","raspadita","2","español","terror cosmico",false,true);
+        Libro libro3 = new Libro("El caballero de la armadura oxidada","Robert","Fisher","raspadita","2","español","Fiction",true,true);
+        Libro libro4 = new Libro("El fin de la eternidad","Isaac","Asimov","raspadita","2","ingles","Science Fiction",false,true);
+        Libro libro5 = new Libro("Los tigres de Malacia","Emilio","Salgari","raspadita","2","ingles","Fiction",true,true);
+        Libro libro6 = new Libro("El principito","Antoine ","de Saint-Exupéry","raspadita","2","italiano","literatura infantil",false,true);
+        Libro libro7 = new Libro("Rayuela","Julio","Cortázar","raspadita","2","italiano","Fiction",false,true);
         Libro libro8 = new Libro("El tunel","Howard Phillips","Ernesto","Sabato","2","español","Fiction",false,false);
         Libro libro9 = new Libro("Metamorfosis","Franz","Kafka","raspadita","2","aleman","terror",false,false);
         Libro libro10 = new Libro("el hobbit","John Ronald Reuel","Tolkien","raspadita","2","español","terror cosmico",false,false);
