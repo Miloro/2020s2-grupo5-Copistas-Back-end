@@ -2,7 +2,11 @@
 ##notifications:
 ##Definicion de lenguaje y version de VM
 language: java
-jdk: openjdk11
+sudo: true
+dist: trusty
+jdk: oraclejdk11
+#language: java
+#jdk: openjdk11
 #
 #env:
 #  - MAVEN_VERSION=3.2.5
