@@ -5,9 +5,18 @@ language: java
 sudo: true
 dist: trusty
 jdk: oraclejdk11
-#language: java
 #jdk: openjdk11
-#
-#env:
-#  - MAVEN_VERSION=3.2.5
-#  - MAVEN_VERSION=3.3.9
+
+env:
+  - MAVEN_VERSION=3.2.5
+  - MAVEN_VERSION=3.3.9
+
+#Se Define guardar en cache la carpeta de maven
+cache:
+  directories:
+      - $HOME/.m2
+install:
+          - "mvn -N io.takari:maven:wrapper -Dmaven=${MAVEN_VERSION}"
+
+before_script:
+          - mvn clean install -Dmaven.compiler.target=1.8 -Dmaven.compiler.source=1.8 -Dmaven.javadoc.skip=true -B -V
