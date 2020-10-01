@@ -1,6 +1,7 @@
 package com.unq.copistas.service;
 
 
+import com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosIdiomaDTO;
 import com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosRetiradosDTO;
 import com.unq.copistas.controller.dtos.DashboardCantidadPagadosDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
@@ -74,5 +75,9 @@ public class LibroService {
 
     public DashboardCantidadDeLibrosRetiradosDTO getCantidadDeLibrosRetirados() {
         return libroRepository.DashboardDTOCountbyLibrosRetirados();
+    }
+
+    public DashboardCantidadDeLibrosIdiomaDTO getCantidadDeLibrosPorIdioma() {
+        return libroRepository.DashboardDTOCountbyLibrosIdioma();
     }
 }

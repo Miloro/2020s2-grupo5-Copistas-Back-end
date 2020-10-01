@@ -6,6 +6,8 @@ public class DashBoardDataDTO {
     DashboardCantidadPagadosDTO dashboardCantidadPagadosDTO;
     DashboardCantidadDeLibrosRetiradosDTO dashboardCantidadDeLibrosRetiradosDTO;
 
+    DashboardCantidadDeLibrosIdiomaDTO dashboardCantidadDeLibrosIdiomaDTO;
+
     public DashBoardDataDTO() {
 
     }
@@ -40,5 +42,13 @@ public class DashBoardDataDTO {
 
     public void setDashboardCantidadDeLibrosRetiradosDTO(DashboardCantidadDeLibrosRetiradosDTO dashboardCantidadDeLibrosRetiradosDTO) {
         this.dashboardCantidadDeLibrosRetiradosDTO = dashboardCantidadDeLibrosRetiradosDTO;
+    }
+
+    public DashboardCantidadDeLibrosIdiomaDTO getDashboardCantidadDeLibrosIdiomaDTO() {
+        return dashboardCantidadDeLibrosIdiomaDTO;
+    }
+
+    public void setDashboardCantidadDeLibrosIdiomaDTO(DashboardCantidadDeLibrosIdiomaDTO dashboardCantidadDeLibrosIdiomaDTO) {
+        this.dashboardCantidadDeLibrosIdiomaDTO = dashboardCantidadDeLibrosIdiomaDTO;
     }
 }

@@ -5,7 +5,7 @@ public enum Idioma {
     INGLES,
     ITALIANO,
     ALEMAN,
-    FRACES,
+    FRANCES,
     JAPONES,
     CHINO,
     HOLANDES

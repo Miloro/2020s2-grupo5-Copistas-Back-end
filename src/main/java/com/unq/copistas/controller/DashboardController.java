@@ -28,6 +28,7 @@ public class DashboardController {
         dashBoardDataDTO.setDashboardNivelCegueraDTO(clienteService.getCantidadDeNivelesDeCeguera());
         dashBoardDataDTO.setDashboardCantidadPagadosDTO(libroService.getCantidadDeLibrosPagados());
         dashBoardDataDTO.setDashboardCantidadDeLibrosRetiradosDTO(libroService.getCantidadDeLibrosRetirados());
+        dashBoardDataDTO.setDashboardCantidadDeLibrosIdiomaDTO(libroService.getCantidadDeLibrosPorIdioma());
         return dashBoardDataDTO;
 
     }

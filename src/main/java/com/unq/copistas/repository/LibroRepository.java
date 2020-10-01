@@ -1,6 +1,7 @@
 package com.unq.copistas.repository;
 
 
+import com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosIdiomaDTO;
 import com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosRetiradosDTO;
 import com.unq.copistas.controller.dtos.DashboardCantidadPagadosDTO;
 import com.unq.copistas.model.Libro;
@@ -27,4 +28,18 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
             "SUM(CASE WHEN a.retirado=false then 1 else 0 END)"+
             ") from Libro a")
     DashboardCantidadDeLibrosRetiradosDTO DashboardDTOCountbyLibrosRetirados();
+
+    @Query("select new com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosIdiomaDTO("+
+            "SUM(CASE WHEN a.idioma='ESPAÑOL' then 1 else 0 END),"+
+            "SUM(CASE WHEN a.idioma='INGLES' then 1 else 0 END),"+
+            "SUM(CASE WHEN a.idioma='ITALIANO' then 1 else 0 END),"+
+            "SUM(CASE WHEN a.idioma='ALEMAN' then 1 else 0 END),"+
+            "SUM(CASE WHEN a.idioma='FRANCES' then 1 else 0 END),"+
+            "SUM(CASE WHEN a.idioma='JAPONES' then 1 else 0 END),"+
+            "SUM(CASE WHEN a.idioma='CHINO' then 1 else 0 END),"+
+            "SUM(CASE WHEN a.idioma='HOLANDES' then 1 else 0 END)"+
+            ") from Libro a")
+    DashboardCantidadDeLibrosIdiomaDTO DashboardDTOCountbyLibrosIdioma();
+
+
 }
