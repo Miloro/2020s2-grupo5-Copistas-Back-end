@@ -12,6 +12,12 @@ env:
 cache:
   directories:
     - $HOME/.m2
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS database_copistas;'
+
 
 install:
   - "mvn -N io.takari:maven:wrapper -Dmaven=${MAVEN_VERSION}"
