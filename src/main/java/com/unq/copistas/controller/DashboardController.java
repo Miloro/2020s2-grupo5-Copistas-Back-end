@@ -2,7 +2,6 @@ package com.unq.copistas.controller;
 
 
 import com.unq.copistas.controller.dtos.DashBoardDataDTO;
-import com.unq.copistas.controller.dtos.DashboardNivelCegueraDTO;
 import com.unq.copistas.service.ClienteService;
 import com.unq.copistas.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,7 @@ public class DashboardController {
         dashBoardDataDTO.setDashboardSexoDTO(clienteService.getCantidadDeClientesPorSexo());
         dashBoardDataDTO.setDashboardNivelCegueraDTO(clienteService.getCantidadDeNivelesDeCeguera());
         dashBoardDataDTO.setDashboardCantidadPagadosDTO(libroService.getCantidadDeLibrosPagados());
+        dashBoardDataDTO.setDashboardCantidadDeLibrosRetiradosDTO(libroService.getCantidadDeLibrosRetirados());
         return dashBoardDataDTO;
 
     }

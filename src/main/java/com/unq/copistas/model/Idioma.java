@@ -1,6 +1,6 @@
 package com.unq.copistas.model;
 
-public enum Idiomas {
+public enum Idioma {
     ESPAÑOL,
     INGLES,
     ITALIANO,

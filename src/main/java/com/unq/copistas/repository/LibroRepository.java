@@ -1,6 +1,7 @@
 package com.unq.copistas.repository;
 
 
+import com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosRetiradosDTO;
 import com.unq.copistas.controller.dtos.DashboardCantidadPagadosDTO;
 import com.unq.copistas.model.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,10 @@ public interface LibroRepository extends JpaRepository<Libro, Long> {
             "SUM(CASE WHEN a.pagado=false then 1 else 0 END)"+
             ") from Libro a")
     DashboardCantidadPagadosDTO DashboardDTOCountbyLibrosPagados();
+
+    @Query("select new com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosRetiradosDTO("+
+            "SUM(CASE WHEN a.retirado=true then 1 else 0 END),"+
+            "SUM(CASE WHEN a.retirado=false then 1 else 0 END)"+
+            ") from Libro a")
+    DashboardCantidadDeLibrosRetiradosDTO DashboardDTOCountbyLibrosRetirados();
 }
