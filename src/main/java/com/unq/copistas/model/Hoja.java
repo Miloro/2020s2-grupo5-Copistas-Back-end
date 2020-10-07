@@ -85,7 +85,7 @@ public class Hoja {
         this.historialDeEstado = historialDeEstado;
     }
 
-    public void siguienteEstadoDeIteracion(Iteracion iteracion){
+    public void agregarUnEstadoDeIteracionEnElHistorial(Iteracion iteracion){
         historialDeEstado.add(iteracion);
     }
 }

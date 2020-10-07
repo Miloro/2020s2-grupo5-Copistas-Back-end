@@ -4,6 +4,7 @@ import com.unq.copistas.controller.dtos.HojaDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.Cliente;
 import com.unq.copistas.model.Hoja;
+import com.unq.copistas.model.Iteracion;
 import com.unq.copistas.model.Libro;
 import com.unq.copistas.service.ClienteService;
 import com.unq.copistas.service.HojaService;
@@ -79,5 +80,14 @@ public class HojaController {
     public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@PathVariable(value = "id") Long libroId){
         Hoja hoja = hojaService.buscarHojaDeRutaPorIdDeLibro(libroId);
         return ResponseEntity.ok().body(hoja);
+    }
+
+    @PutMapping("/hojaderuta/historial/{id}")
+    public ResponseEntity<Hoja> updateHistorialHojaDeRuta(
+            @PathVariable(value = "id") Long hojaDeRutaId,
+            @Valid @RequestBody Iteracion nuevaIteracion)
+            throws ResourceNotFoundException {
+        final Hoja updatedHoja = hojaService.updateHistorialHojaDeRuta(hojaDeRutaId, nuevaIteracion);
+        return ResponseEntity.ok(updatedHoja);
     }
 }
