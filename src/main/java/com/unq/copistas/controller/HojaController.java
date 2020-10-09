@@ -4,6 +4,7 @@ import com.unq.copistas.controller.dtos.HojaDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.Cliente;
 import com.unq.copistas.model.Hoja;
+import com.unq.copistas.model.Iteracion;
 import com.unq.copistas.model.Libro;
 import com.unq.copistas.service.ClienteService;
 import com.unq.copistas.service.HojaService;
@@ -26,10 +27,10 @@ public class HojaController {
     private HojaService hojaService;
 
     @Autowired
-    ClienteService clienteService;
+    private ClienteService clienteService;
 
     @Autowired
-    LibroService libroService;
+    private LibroService libroService;
 
 
     @PostMapping("/hojaderuta")
@@ -76,8 +77,17 @@ public class HojaController {
     }
 
     @GetMapping("hojaderuta/libro/{id}")
-    public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@PathVariable(value = "id") Long libroId)throws Exception{
+    public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@PathVariable(value = "id") Long libroId){
         Hoja hoja = hojaService.buscarHojaDeRutaPorIdDeLibro(libroId);
         return ResponseEntity.ok().body(hoja);
+    }
+
+    @PutMapping("/hojaderuta/historial/{id}")
+    public ResponseEntity<Hoja> updateHistorialHojaDeRuta(
+            @PathVariable(value = "id") Long hojaDeRutaId,
+            @Valid @RequestBody Iteracion nuevaIteracion)
+            throws ResourceNotFoundException {
+        final Hoja updatedHoja = hojaService.updateHistorialHojaDeRuta(hojaDeRutaId, nuevaIteracion);
+        return ResponseEntity.ok(updatedHoja);
     }
 }

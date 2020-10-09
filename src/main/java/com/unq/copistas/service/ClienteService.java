@@ -1,8 +1,9 @@
 package com.unq.copistas.service;
 
+import com.unq.copistas.controller.dtos.DashboardNivelCegueraDTO;
+import com.unq.copistas.controller.dtos.DashboardSexoDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.Cliente;
-import com.unq.copistas.model.Libro;
 import com.unq.copistas.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,8 @@ public class ClienteService {
 
     @Transactional
     public Cliente getClientePorId(long clienteId)  throws ResourceNotFoundException {
-        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() -> new ResourceNotFoundException("cliente no encontrado con la id" + clienteId));
-        return cliente;
+        return clienteRepository.findById(clienteId).orElseThrow(() -> new ResourceNotFoundException("cliente no encontrado con la id" + clienteId));
+
     }
 
 
@@ -52,8 +53,8 @@ public class ClienteService {
         cliente.setFechaDeNacimiento(clienteDetails.getFechaDeNacimiento());
         cliente.setSexo(clienteDetails.getSexo());
         cliente.setNivelDiscapacidadVisual(clienteDetails.getNivelDiscapacidadVisual());
-        final Cliente updatedCliente = clienteRepository.save(cliente);
-        return updatedCliente;
+        return clienteRepository.save(cliente);
+
     }
 
 
@@ -67,5 +68,14 @@ public class ClienteService {
     @Transactional
     public List<Cliente> buscarClientePorDni(Integer dni) {
         return clienteRepository.findAllByDni(dni);
+    }
+
+    public DashboardSexoDTO getCantidadDeClientesPorSexo() {
+        return clienteRepository.DashboardDTOCountbySexo();
+    }
+
+
+    public DashboardNivelCegueraDTO getCantidadDeNivelesDeCeguera() {
+        return clienteRepository.DashboardDTOCountbyNivelCeguera();
     }
 }

@@ -18,10 +18,14 @@ public class Libro {
     private String apellidoAutor;
     private String editorial;
     private String edicion;
-    private String idioma;
+    @Enumerated(EnumType.STRING)
+    private Idioma idioma;
     private String categoria;
 
-    public Libro( String titulo, String nombreAutor, String apellidoAutor, String editorial, String edicion, String idioma, String categoria) {
+    private boolean retirado;
+
+    private boolean pagado;
+    public Libro( String titulo, String nombreAutor, String apellidoAutor, String editorial, String edicion, Idioma idioma, String categoria, boolean retirado, boolean pagado) {
         this.titulo = titulo;
         this.nombreAutor = nombreAutor;
         this.apellidoAutor = apellidoAutor;
@@ -29,6 +33,8 @@ public class Libro {
         this.edicion = edicion;
         this.idioma = idioma;
         this.categoria = categoria;
+        this.retirado = retirado;
+        this.pagado = pagado;
     }
 
     public Libro() {
@@ -83,11 +89,11 @@ public class Libro {
         this.edicion = edicion;
     }
 
-    public String getIdioma() {
+    public Idioma getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(String idioma) {
+    public void setIdioma(Idioma idioma) {
         this.idioma = idioma;
     }
 
@@ -99,4 +105,19 @@ public class Libro {
         this.categoria = categoria;
     }
 
+    public boolean isRetirado() {
+        return retirado;
+    }
+
+    public void setRetirado(boolean retirado) {
+        this.retirado = retirado;
+    }
+
+    public boolean isPagado() {
+        return pagado;
+    }
+
+    public void setPagado(boolean pagado) {
+        this.pagado = pagado;
+    }
 }

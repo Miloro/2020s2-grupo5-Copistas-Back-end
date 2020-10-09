@@ -54,8 +54,21 @@ public class HojaService {
         return hoja;
     }
 
+    @Transactional
     public Hoja buscarHojaDeRutaPorIdDeLibro(Long libroId) {
         Hoja hoja = hojaDeRutaRepository.findAllByLibro_Id(libroId);
         return hoja;
+    }
+
+    @Transactional
+    public Hoja updateHistorialHojaDeRuta(Long hojaDeRutaId, Iteracion nuevaIteracion) throws ResourceNotFoundException  {
+        Hoja hoja =hojaDeRutaRepository
+                .findById(hojaDeRutaId)
+                .orElseThrow(() -> new ResourceNotFoundException("hojaDeRuta no encontrado con la id :: " + hojaDeRutaId));
+        nuevaIteracion.setHoja(hoja);
+        hoja.agregarUnEstadoDeIteracionEnElHistorial(nuevaIteracion);
+        return hojaDeRutaRepository.save(hoja);
+
+
     }
 }

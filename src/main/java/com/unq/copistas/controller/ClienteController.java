@@ -2,7 +2,6 @@ package com.unq.copistas.controller;
 
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.Cliente;
-import com.unq.copistas.model.Libro;
 import com.unq.copistas.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +52,6 @@ public class ClienteController {
 
     @GetMapping("/cliente")
     public List<Cliente> buscarClientePorDNI(@RequestParam(value="dni") Integer dni){
-        Integer dgasdg = dni;
         return clienteService.buscarClientePorDni(dni);
     }
 }
