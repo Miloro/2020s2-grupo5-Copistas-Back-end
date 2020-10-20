@@ -1,5 +1,6 @@
 package com.unq.copistas;
 
+import com.unq.copistas.security.JWTAuthorizationFilter;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,9 +33,8 @@ public class CopistasApplication {
 			http.csrf().disable()
 					.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 					.authorizeRequests()
-					.antMatchers(HttpMethod.POST, "/login").permitAll()
+					.antMatchers(HttpMethod.POST, "/user").permitAll()
 					.anyRequest().authenticated();
 		}
-
 	}
 }

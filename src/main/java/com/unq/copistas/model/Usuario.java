@@ -14,7 +14,7 @@ import javax.persistence.*;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
         private long id;
-        private String user;
+        private String userName;
         private String pwd;
         private String token;
         private String email;
@@ -24,19 +24,19 @@ import javax.persistence.*;
 
     public Usuario(long id, String user, String pwd, String email, String token) {
         this.id = id;
-        this.user = user;
+        this.userName = user;
         this.pwd = pwd;
         this.email = email;
         this.token = token;
     }
 
 
-    public String getUser() {
-            return user;
+    public String getUserName() {
+            return userName;
         }
 
-        public void setUser(String user) {
-            this.user = user;
+        public void setUserName(String user) {
+            this.userName = user;
         }
 
         public String getPwd() {
