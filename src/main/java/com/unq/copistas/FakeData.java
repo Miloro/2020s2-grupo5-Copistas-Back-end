@@ -4,6 +4,7 @@ import com.unq.copistas.model.*;
 import com.unq.copistas.repository.ClienteRepository;
 import com.unq.copistas.repository.HojaDeRutaRepository;
 import com.unq.copistas.repository.LibroRepository;
+import com.unq.copistas.repository.UsuarioRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -21,12 +22,13 @@ public class FakeData implements ApplicationRunner {
     private final ClienteRepository clienteRepository;
     private final HojaDeRutaRepository hojaDeRutaRepository;
     private final LibroRepository libroRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public FakeData(ClienteRepository clienteRepository, HojaDeRutaRepository hojaDeRutaRepository,LibroRepository libroRepository ) {
+    public FakeData(ClienteRepository clienteRepository, HojaDeRutaRepository hojaDeRutaRepository,LibroRepository libroRepository, UsuarioRepository usuarioRepository ) {
         this.clienteRepository = clienteRepository;
         this.hojaDeRutaRepository = hojaDeRutaRepository;
         this.libroRepository = libroRepository;
-
+        this.usuarioRepository = usuarioRepository;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class FakeData implements ApplicationRunner {
         Cliente cliente10 = new Cliente("cliente10","cliente10",101010,10,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.PARCIAL);
         Cliente cliente11 = new Cliente("cliente11","cliente11",111111,11,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
         Cliente cliente12 = new Cliente("cliente12","cliente12",121212,12,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
-
+        Usuario user1 = new Usuario(1,"juan", "lala", "juan@gmail.com","");
         clienteRepository.save(cliente1);
         clienteRepository.save(cliente2);
         clienteRepository.save(cliente3);
@@ -57,6 +59,7 @@ public class FakeData implements ApplicationRunner {
         clienteRepository.save(cliente10);
         clienteRepository.save(cliente11);
         clienteRepository.save(cliente12);
+        usuarioRepository.save(user1);
 
         Libro libro1 = new Libro("El señor de los anillos la comunidad del anillos","John Ronald Reuel","Tolkien ","dgasdgs","1412",Idioma.ESPAÑOL,"fantasia",true,true);
         Libro libro2 = new Libro("La llamada de Cthulhu","Howard Phillips","Lovecraft","raspadita","2",Idioma.ESPAÑOL,"terror cosmico",false,true);
