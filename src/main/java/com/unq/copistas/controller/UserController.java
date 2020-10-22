@@ -1,16 +1,21 @@
 package com.unq.copistas.controller;
 
 
+import com.unq.copistas.model.Libro;
 import com.unq.copistas.model.Usuario;
+import com.unq.copistas.service.LibroService;
+import com.unq.copistas.service.UsuarioService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.security.Key;
 import java.util.Date;
 import java.util.List;
@@ -20,15 +25,16 @@ import java.util.stream.Collectors;
 @RestController
 public class UserController {
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @PostMapping("user")
     public Usuario login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
-
         String token = getJWTToken(username);
         Usuario user = new Usuario();
         user.setUserName(username);
         user.setToken(token);
         return user;
-
     }
 
     private String getJWTToken(String username) {
@@ -51,4 +57,12 @@ public class UserController {
 
         return "Bearer " + token;
     }
+
+    @PostMapping("/register")
+    public Usuario crearUsuario(@Valid @RequestBody Usuario user){
+        return  usuarioService.createUsuario(user);
+    }
+
+
+
 }

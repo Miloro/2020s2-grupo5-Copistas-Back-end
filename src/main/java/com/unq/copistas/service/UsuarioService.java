@@ -5,9 +5,11 @@ import com.unq.copistas.model.Usuario;
 import com.unq.copistas.repository.ClienteRepository;
 import com.unq.copistas.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+@Service
 public class UsuarioService {
 
         @Autowired
