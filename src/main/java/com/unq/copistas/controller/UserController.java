@@ -1,9 +1,8 @@
 package com.unq.copistas.controller;
 
 
-import com.unq.copistas.model.Libro;
+
 import com.unq.copistas.model.Usuario;
-import com.unq.copistas.service.LibroService;
 import com.unq.copistas.service.UsuarioService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -38,7 +37,6 @@ public class UserController {
     }
 
     private String getJWTToken(String username) {
-        String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList("ROLE_USER");
 
