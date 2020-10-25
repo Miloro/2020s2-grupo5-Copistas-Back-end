@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 
 //en esta clase van implementadas los privilegios de cada usuario
 //esta clase implementa una interface del security core
+//aqui lo que hace es convertir la clase roles en authorities que es una clase
+//del nucleo de seguridad de springboot
+//el usuario quizas puede ver productos y el admin podria crear o borrar
 public class UsuarioPrincipal implements UserDetails {
     private String nombre;
     private String nombre_usuario;
