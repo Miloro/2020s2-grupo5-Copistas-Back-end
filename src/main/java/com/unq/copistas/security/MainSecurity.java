@@ -1,5 +1,4 @@
 package com.unq.copistas.security;
-
 import com.unq.copistas.security.jwt.JwtEntryPoint;
 import com.unq.copistas.security.jwt.JwtTokenFilter;
 import com.unq.copistas.security.service.UserDetailsServiceImpl;

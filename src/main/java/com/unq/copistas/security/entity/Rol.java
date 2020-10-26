@@ -5,6 +5,7 @@ import com.unq.copistas.security.enums.RolNombre;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

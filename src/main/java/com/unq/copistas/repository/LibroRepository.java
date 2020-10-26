@@ -1,10 +1,10 @@
 package com.unq.copistas.repository;
-
-
 import com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosIdiomaDTO;
 import com.unq.copistas.controller.dtos.DashboardCantidadDeLibrosRetiradosDTO;
 import com.unq.copistas.controller.dtos.DashboardCantidadPagadosDTO;
 import com.unq.copistas.model.Libro;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,6 +15,7 @@ import java.util.List;
 public interface LibroRepository extends JpaRepository<Libro, Long> {
 
     List<Libro> findAllByTituloContaining(String titulo);
+
 
 
     @Query("select new com.unq.copistas.controller.dtos.DashboardCantidadPagadosDTO("+

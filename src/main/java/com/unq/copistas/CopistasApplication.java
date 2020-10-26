@@ -18,11 +18,11 @@ public class CopistasApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CopistasApplication.class, args);
 	}
-
+	/*
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
-	}
+
 
 	@EnableWebSecurity
 	@Configuration
@@ -35,6 +35,6 @@ public class CopistasApplication {
 					.authorizeRequests()
 					.antMatchers(HttpMethod.POST, "/user").permitAll()
 					.anyRequest().authenticated();
-		}
-	}
+		}*/
 }
+

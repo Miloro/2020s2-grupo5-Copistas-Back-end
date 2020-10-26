@@ -4,14 +4,19 @@ import com.unq.copistas.model.*;
 import com.unq.copistas.repository.ClienteRepository;
 import com.unq.copistas.repository.HojaDeRutaRepository;
 import com.unq.copistas.repository.LibroRepository;
-import com.unq.copistas.repository.UsuarioRepository;
+import com.unq.copistas.security.entity.Rol;
+import com.unq.copistas.security.entity.Usuario;
+import com.unq.copistas.security.enums.RolNombre;
+import com.unq.copistas.security.repository.UsuarioRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.unq.copistas.model.EstadoDeIteracion.*;
 
@@ -46,7 +51,13 @@ public class FakeData implements ApplicationRunner {
         Cliente cliente10 = new Cliente("cliente10","cliente10",101010,10,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.PARCIAL);
         Cliente cliente11 = new Cliente("cliente11","cliente11",111111,11,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
         Cliente cliente12 = new Cliente("cliente12","cliente12",121212,12,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
-        Usuario user1 = new Usuario(1,"juan", "lala", "juan@gmail.com","");
+        Usuario user1 = new Usuario();
+        user1.setEmail("mail@mail");
+        user1.setNombre("juan");
+        user1.setNombreUsuario("juancito");
+        Set<Rol> roles = new HashSet<Rol>();
+        roles.add(new Rol(RolNombre.ROLE_USER));
+        user1.setRoles(roles);
         clienteRepository.save(cliente1);
         clienteRepository.save(cliente2);
         clienteRepository.save(cliente3);
