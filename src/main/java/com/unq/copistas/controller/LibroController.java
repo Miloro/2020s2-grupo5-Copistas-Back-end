@@ -5,6 +5,7 @@ import com.unq.copistas.model.Libro;
 import com.unq.copistas.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,6 +21,7 @@ public class LibroController {
     @Autowired
     private LibroService libroService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/libro")
     public Libro crearLibro(@Valid @RequestBody Libro libro){
         return libroService.crearLibro(libro);
