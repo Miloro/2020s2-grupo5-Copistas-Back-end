@@ -1,14 +1,14 @@
 package com.unq.copistas.repository;
-
 import com.unq.copistas.controller.dtos.DashboardNivelCegueraDTO;
 import com.unq.copistas.controller.dtos.DashboardSexoDTO;
 import com.unq.copistas.model.Cliente;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {

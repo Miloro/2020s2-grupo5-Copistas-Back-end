@@ -4,6 +4,10 @@ import com.unq.copistas.model.*;
 import com.unq.copistas.repository.ClienteRepository;
 import com.unq.copistas.repository.HojaDeRutaRepository;
 import com.unq.copistas.repository.LibroRepository;
+import com.unq.copistas.security.entity.Rol;
+import com.unq.copistas.security.enums.RolNombre;
+import com.unq.copistas.security.repository.UsuarioRepository;
+import com.unq.copistas.security.service.RolService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -21,12 +25,15 @@ public class FakeData implements ApplicationRunner {
     private final ClienteRepository clienteRepository;
     private final HojaDeRutaRepository hojaDeRutaRepository;
     private final LibroRepository libroRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final RolService rolService;
 
-    public FakeData(ClienteRepository clienteRepository, HojaDeRutaRepository hojaDeRutaRepository,LibroRepository libroRepository ) {
+    public FakeData(ClienteRepository clienteRepository, HojaDeRutaRepository hojaDeRutaRepository, LibroRepository libroRepository, UsuarioRepository usuarioRepository, RolService rolService) {
         this.clienteRepository = clienteRepository;
         this.hojaDeRutaRepository = hojaDeRutaRepository;
         this.libroRepository = libroRepository;
-
+        this.usuarioRepository = usuarioRepository;
+        this.rolService = rolService;
     }
 
     @Override
@@ -44,7 +51,6 @@ public class FakeData implements ApplicationRunner {
         Cliente cliente10 = new Cliente("cliente10","cliente10",101010,10,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.PARCIAL);
         Cliente cliente11 = new Cliente("cliente11","cliente11",111111,11,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
         Cliente cliente12 = new Cliente("cliente12","cliente12",121212,12,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.TOTAL);
-
         clienteRepository.save(cliente1);
         clienteRepository.save(cliente2);
         clienteRepository.save(cliente3);
@@ -156,6 +162,13 @@ public class FakeData implements ApplicationRunner {
         hojaDeRutaRepository.save(hoja3);
         hojaDeRutaRepository.save(hoja4);
         hojaDeRutaRepository.save(hoja5);
+
+
+        Rol rolAdmin = new Rol(RolNombre.ROLE_ADMIN);
+        Rol rolUser = new Rol(RolNombre.ROLE_USER);
+        rolService.save(rolAdmin);
+        rolService.save(rolUser);
+
 
     }
 }
