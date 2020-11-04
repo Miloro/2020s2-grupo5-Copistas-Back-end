@@ -68,7 +68,10 @@ public class HojaService {
         nuevaIteracion.setHoja(hoja);
         hoja.agregarUnEstadoDeIteracionEnElHistorial(nuevaIteracion);
         return hojaDeRutaRepository.save(hoja);
+    }
 
-
+    @Transactional
+    public Hoja getHojaPorTituloLibro(String titulo){
+        return hojaDeRutaRepository.findHojaByLibro_Titulo(titulo);
     }
 }

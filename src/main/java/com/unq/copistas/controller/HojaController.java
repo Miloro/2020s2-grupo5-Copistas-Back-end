@@ -82,6 +82,12 @@ public class HojaController {
         return ResponseEntity.ok().body(hoja);
     }
 
+    @GetMapping("hojaderuta/libro")
+    public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@RequestParam(value="titulo") String titulo){
+        Hoja hoja = hojaService.getHojaPorTituloLibro(titulo);
+        return ResponseEntity.ok().body(hoja);
+    }
+
     @PutMapping("/hojaderuta/historial/{id}")
     public ResponseEntity<Hoja> updateHistorialHojaDeRuta(
             @PathVariable(value = "id") Long hojaDeRutaId,
