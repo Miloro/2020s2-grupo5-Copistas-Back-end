@@ -5,30 +5,38 @@ import com.unq.copistas.repository.ClienteRepository;
 import com.unq.copistas.repository.HojaDeRutaRepository;
 import com.unq.copistas.repository.LibroRepository;
 import com.unq.copistas.security.entity.Rol;
+import com.unq.copistas.security.entity.Usuario;
 import com.unq.copistas.security.enums.RolNombre;
 import com.unq.copistas.security.repository.UsuarioRepository;
 import com.unq.copistas.security.service.RolService;
+import com.unq.copistas.security.service.UsuarioService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.unq.copistas.model.EstadoDeIteracion.*;
 
 
 @Component
 public class FakeData implements ApplicationRunner {
-
+    private final UsuarioService usuarioService;
+    private final PasswordEncoder passwordEncoder;
     private final ClienteRepository clienteRepository;
     private final HojaDeRutaRepository hojaDeRutaRepository;
     private final LibroRepository libroRepository;
     private final UsuarioRepository usuarioRepository;
     private final RolService rolService;
 
-    public FakeData(ClienteRepository clienteRepository, HojaDeRutaRepository hojaDeRutaRepository, LibroRepository libroRepository, UsuarioRepository usuarioRepository, RolService rolService) {
+    public FakeData(UsuarioService usuarioService, PasswordEncoder passwordEncoder, ClienteRepository clienteRepository, HojaDeRutaRepository hojaDeRutaRepository, LibroRepository libroRepository, UsuarioRepository usuarioRepository, RolService rolService) {
+        this.usuarioService = usuarioService;
+        this.passwordEncoder = passwordEncoder;
         this.clienteRepository = clienteRepository;
         this.hojaDeRutaRepository = hojaDeRutaRepository;
         this.libroRepository = libroRepository;
@@ -168,6 +176,14 @@ public class FakeData implements ApplicationRunner {
         Rol rolUser = new Rol(RolNombre.ROLE_USER);
         rolService.save(rolAdmin);
         rolService.save(rolUser);
+
+        Usuario usuario = new Usuario("admin", "admin", "admin@admin.com", passwordEncoder.encode("admin"));
+        Set<Rol> roles = new HashSet<>();
+        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+        roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+        usuario.setRoles(roles);
+        usuarioService.save(usuario);
+
 
 
     }
