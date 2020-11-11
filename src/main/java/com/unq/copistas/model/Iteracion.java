@@ -1,6 +1,7 @@
 package com.unq.copistas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.unq.copistas.model.enums.EstadoDeIteracion;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;

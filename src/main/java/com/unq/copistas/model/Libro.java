@@ -1,5 +1,6 @@
 package com.unq.copistas.model;
 
+import com.unq.copistas.model.enums.Idioma;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -25,6 +26,8 @@ public class Libro {
     private boolean retirado;
 
     private boolean pagado;
+
+
     public Libro( String titulo, String nombreAutor, String apellidoAutor, String editorial, String edicion, Idioma idioma, String categoria, boolean retirado, boolean pagado) {
         this.titulo = titulo;
         this.nombreAutor = nombreAutor;

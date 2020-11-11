@@ -1,6 +1,9 @@
 package com.unq.copistas;
 
 import com.unq.copistas.model.*;
+import com.unq.copistas.model.enums.Idioma;
+import com.unq.copistas.model.enums.NivelDiscapacidadVisual;
+import com.unq.copistas.model.enums.Sexo;
 import com.unq.copistas.repository.ClienteRepository;
 import com.unq.copistas.repository.HojaDeRutaRepository;
 import com.unq.copistas.repository.LibroRepository;
@@ -21,7 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.unq.copistas.model.EstadoDeIteracion.*;
+import static com.unq.copistas.model.enums.EstadoDeIteracion.*;
 
 
 @Component
@@ -47,7 +50,7 @@ public class FakeData implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        Cliente cliente1 = new Cliente("cliente1","cliente1",111,1,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.TOTAL);
+        Cliente cliente1 = new Cliente("cliente1","cliente1",111,1,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(), Sexo.HOMBRE, NivelDiscapacidadVisual.TOTAL);
         Cliente cliente2 = new Cliente("cliente2","cliente2",222,2,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.PARCIAL);
         Cliente cliente3 = new Cliente("cliente3","cliente3",333,3,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.PARCIAL);
         Cliente cliente5 = new Cliente("cliente5","cliente5",555,5,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.NINGUNA);
@@ -72,7 +75,7 @@ public class FakeData implements ApplicationRunner {
         clienteRepository.save(cliente11);
         clienteRepository.save(cliente12);
 
-        Libro libro1 = new Libro("El señor de los anillos la comunidad del anillos","John Ronald Reuel","Tolkien ","dgasdgs","1412",Idioma.ESPAÑOL,"fantasia",true,true);
+        Libro libro1 = new Libro("El señor de los anillos la comunidad del anillos","John Ronald Reuel","Tolkien ","dgasdgs","1412", Idioma.ESPAÑOL,"fantasia",true,true);
         Libro libro2 = new Libro("La llamada de Cthulhu","Howard Phillips","Lovecraft","raspadita","2",Idioma.ESPAÑOL,"terror cosmico",false,true);
         Libro libro3 = new Libro("El caballero de la armadura oxidada","Robert","Fisher","raspadita","2",Idioma.ESPAÑOL,"Fiction",true,true);
         Libro libro4 = new Libro("El fin de la eternidad","Isaac","Asimov","raspadita","2",Idioma.INGLES,"Science Fiction",false,true);

@@ -1,4 +1,4 @@
-package com.unq.copistas.model;
+package com.unq.copistas.model.enums;
 
 public enum Sexo {
     HOMBRE,

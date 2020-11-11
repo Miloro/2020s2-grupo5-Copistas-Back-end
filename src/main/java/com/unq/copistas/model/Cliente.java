@@ -1,5 +1,7 @@
 package com.unq.copistas.model;
 
+import com.unq.copistas.model.enums.NivelDiscapacidadVisual;
+import com.unq.copistas.model.enums.Sexo;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
