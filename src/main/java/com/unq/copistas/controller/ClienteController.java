@@ -5,6 +5,7 @@ import com.unq.copistas.model.Cliente;
 import com.unq.copistas.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,6 +21,7 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/cliente")
     public Cliente createCliente(@Valid @RequestBody Cliente cliente){return clienteService.createCliente(cliente);}
 
@@ -32,6 +34,7 @@ public class ClienteController {
         return ResponseEntity.ok().body(cliente);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/cliente/{id}")
     public ResponseEntity<Cliente> updateCliente(
             @PathVariable(value = "id") Long clienteId,
@@ -42,6 +45,7 @@ public class ClienteController {
         return ResponseEntity.ok(updatedCliente);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/cliente/{id}")
     public Map<String, Boolean> deleteCliente(@PathVariable (value = "id") Long clienteId) throws Exception{
         Cliente cliente = clienteService.deleteCliente(clienteId);

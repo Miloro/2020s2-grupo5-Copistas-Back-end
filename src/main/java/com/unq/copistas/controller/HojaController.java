@@ -11,6 +11,7 @@ import com.unq.copistas.service.HojaService;
 import com.unq.copistas.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,7 +33,7 @@ public class HojaController {
     @Autowired
     private LibroService libroService;
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/hojaderuta")
     public Hoja crearHojaDeRuta(@Valid @RequestBody HojaDTO hojaDTO) throws ResourceNotFoundException {
 
@@ -59,6 +60,7 @@ public class HojaController {
         return ResponseEntity.ok().body(hoja);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/hojaderuta/{id}")
     public ResponseEntity<Hoja> updateHojaDeRuta(
             @PathVariable(value = "id") Long hojaDeRutaId,
@@ -68,6 +70,7 @@ public class HojaController {
         return ResponseEntity.ok(updatedHoja);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/hojaderuta/{id}")
     public Map<String,Boolean> deleteHojaDeRuta(@PathVariable(value = "id") Long hojaDeRutaId) throws  Exception{
         Hoja hoja = hojaService.deleteHojaDeRuta(hojaDeRutaId);
@@ -88,6 +91,7 @@ public class HojaController {
         return ResponseEntity.ok().body(hoja);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/hojaderuta/historial/{id}")
     public ResponseEntity<Hoja> updateHistorialHojaDeRuta(
             @PathVariable(value = "id") Long hojaDeRutaId,

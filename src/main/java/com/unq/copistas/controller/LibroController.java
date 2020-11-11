@@ -32,12 +32,14 @@ public class LibroController {
         return libroService.getAllLibros();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("libro/{id}")
     public ResponseEntity<Libro> getLibroPorId(@PathVariable(value = "id") Long libroId) throws ResourceNotFoundException{
         Libro libro = libroService.getLibroById(libroId);
         return ResponseEntity.ok().body(libro);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/libro/{id}")
     public ResponseEntity<Libro> updateLibro(
             @PathVariable(value = "id") Long libroId,
@@ -48,6 +50,7 @@ public class LibroController {
         return ResponseEntity.ok(updatedLibro);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/libro/{id}")
     public Map<String,Boolean> deleteLibro(@PathVariable(value = "id") Long libroId) throws  Exception{
         Libro libro = libroService.deleteLibro(libroId);
@@ -60,4 +63,6 @@ public class LibroController {
     public List<Libro> buscarLibroPorNombre(@RequestParam(value="titulo") String titulo){
         return libroService.buscarLibroPorTitulo(titulo);
     }
+
+
 }
