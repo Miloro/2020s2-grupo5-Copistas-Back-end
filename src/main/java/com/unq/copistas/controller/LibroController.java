@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "*")
+
 @RequestMapping("/api")
 public class LibroController {
 
@@ -39,13 +39,11 @@ public class LibroController {
         return ResponseEntity.ok().body(libro);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/libro/{id}")
     public ResponseEntity<Libro> updateLibro(
             @PathVariable(value = "id") Long libroId,
             @Valid @RequestBody Libro libroDetails)
             throws ResourceNotFoundException {
-        System.out.print(libroId);
         final Libro updatedLibro = libroService.updatelibro(libroId, libroDetails);
         return ResponseEntity.ok(updatedLibro);
     }

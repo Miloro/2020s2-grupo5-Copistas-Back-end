@@ -108,7 +108,7 @@ public class Libro {
         this.categoria = categoria;
     }
 
-    public boolean isRetirado() {
+    public boolean getRetirado() {
         return retirado;
     }
 
@@ -116,7 +116,7 @@ public class Libro {
         this.retirado = retirado;
     }
 
-    public boolean isPagado() {
+    public boolean getPagado() {
         return pagado;
     }
 

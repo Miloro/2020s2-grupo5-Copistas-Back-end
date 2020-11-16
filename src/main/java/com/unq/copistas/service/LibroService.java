@@ -51,6 +51,8 @@ public class LibroService {
         libro.setEdicion(libroDetails.getEdicion());
         libro.setIdioma(libroDetails.getIdioma());
         libro.setCategoria(libroDetails.getCategoria());
+        libro.setPagado(libroDetails.getPagado());
+        libro.setRetirado(libroDetails.getRetirado());
         final Libro updatedLibro = libroRepository.save(libro);
         return updatedLibro;
     }
