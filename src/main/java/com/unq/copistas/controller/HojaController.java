@@ -2,14 +2,13 @@ package com.unq.copistas.controller;
 
 import com.unq.copistas.controller.dtos.HojaDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
-import com.unq.copistas.model.Cliente;
-import com.unq.copistas.model.Hoja;
-import com.unq.copistas.model.Iteracion;
-import com.unq.copistas.model.Libro;
+import com.unq.copistas.model.*;
+import com.unq.copistas.security.service.UsuarioService;
 import com.unq.copistas.service.ClienteService;
 import com.unq.copistas.service.HojaService;
 import com.unq.copistas.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +31,9 @@ public class HojaController {
 
     @Autowired
     private LibroService libroService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/hojaderuta")
@@ -97,7 +99,12 @@ public class HojaController {
             @PathVariable(value = "id") Long hojaDeRutaId,
             @Valid @RequestBody Iteracion nuevaIteracion)
             throws ResourceNotFoundException {
-        final Hoja updatedHoja = hojaService.updateHistorialHojaDeRuta(hojaDeRutaId, nuevaIteracion);
-        return ResponseEntity.ok(updatedHoja);
+        if(usuarioService.existsByNombreUsuario(nuevaIteracion.getPersonaEncargada())){
+            final Hoja updatedHoja = hojaService.updateHistorialHojaDeRuta(hojaDeRutaId, nuevaIteracion);
+            return ResponseEntity.ok(updatedHoja);
+        }else{
+            return new ResponseEntity(new Mensaje("no existe un colaborador con ese nombre"), HttpStatus.BAD_REQUEST);
+        }
+
     }
 }
