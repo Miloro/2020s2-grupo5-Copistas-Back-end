@@ -100,11 +100,19 @@ public class HojaController {
             @Valid @RequestBody Iteracion nuevaIteracion)
             throws ResourceNotFoundException {
         if(usuarioService.existsByNombreUsuario(nuevaIteracion.getPersonaEncargada())){
+            nuevaIteracion.setTareaTerminada(false);
             final Hoja updatedHoja = hojaService.updateHistorialHojaDeRuta(hojaDeRutaId, nuevaIteracion);
             return ResponseEntity.ok(updatedHoja);
         }else{
             return new ResponseEntity(new Mensaje("no existe un colaborador con ese nombre"), HttpStatus.BAD_REQUEST);
         }
-
     }
+
+
+    @GetMapping("/hojaderuta/historial/colaborador")
+    public List<Hoja> getTareasAsignadasAlColaborador(
+            @RequestParam(value="usuario") String usuarioColaborador){
+            return hojaService.getTareasAsignadasAlColaborador(usuarioColaborador);
+    }
+
 }

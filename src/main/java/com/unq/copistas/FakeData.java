@@ -102,20 +102,20 @@ public class FakeData implements ApplicationRunner {
 
 
         List<Iteracion> iteraciones = new ArrayList<>();
-        Iteracion iteracion1Libro1 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
-        Iteracion iteracion2Libro1 = new Iteracion("carlos",LocalDate.now(),CORRECION);
-        Iteracion iteracion3Libro1 = new Iteracion("juana",LocalDate.now(),VISADO);
+        Iteracion iteracion1Libro1 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, true);
+        Iteracion iteracion2Libro1 = new Iteracion("carlos",LocalDate.now(),CORRECION, true);
+        Iteracion iteracion3Libro1 = new Iteracion("juana",LocalDate.now(),VISADO, false);
         iteraciones.add(iteracion1Libro1);
         iteraciones.add(iteracion2Libro1);
         iteraciones.add(iteracion3Libro1);
 
         List<Iteracion> iteraciones2 = new ArrayList<>();
-        Iteracion iteracion1Libro2 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
-        Iteracion iteracion2Libro2 = new Iteracion("carlos",LocalDate.now(),CORRECION);
-        Iteracion iteracion3Libro2 = new Iteracion("juana",LocalDate.now(),VISADO);
-        Iteracion iteracion4Libro2 = new Iteracion("ricardo",LocalDate.now(),ENVIO_DE_MAIL);
-        Iteracion iteracion5Libro2 = new Iteracion("ruperta",LocalDate.now(),IMPRESION_EN_BRAILE);
-        Iteracion iteracion6Libro2 = new Iteracion("cleotilde",LocalDate.now(),ANILLADO);
+        Iteracion iteracion1Libro2 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, true);
+        Iteracion iteracion2Libro2 = new Iteracion("carlos",LocalDate.now(),CORRECION, true);
+        Iteracion iteracion3Libro2 = new Iteracion("juana",LocalDate.now(),VISADO, true);
+        Iteracion iteracion4Libro2 = new Iteracion("ricardo",LocalDate.now(),ENVIO_DE_MAIL, true);
+        Iteracion iteracion5Libro2 = new Iteracion("ruperta",LocalDate.now(),IMPRESION_EN_BRAILE, true);
+        Iteracion iteracion6Libro2 = new Iteracion("cleotilde",LocalDate.now(),ANILLADO, false);
         iteraciones2.add(iteracion1Libro2);
         iteraciones2.add(iteracion2Libro2);
         iteraciones2.add(iteracion3Libro2);
@@ -124,21 +124,21 @@ public class FakeData implements ApplicationRunner {
         iteraciones2.add(iteracion6Libro2);
 
         List<Iteracion> iteraciones3 = new ArrayList<>();
-        Iteracion iteracion1Libro3 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
-        Iteracion iteracion2Libro3 = new Iteracion("carlos",LocalDate.now(),CORRECION);
-        Iteracion iteracion3Libro3 = new Iteracion("juana",LocalDate.now(),VISADO);
-        Iteracion iteracion4Libro3 = new Iteracion("ricardo",LocalDate.now(),ENVIO_DE_MAIL);
+        Iteracion iteracion1Libro3 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, true);
+        Iteracion iteracion2Libro3 = new Iteracion("rodrigonina",LocalDate.now(),CORRECION, true);
+        Iteracion iteracion3Libro3 = new Iteracion("juana",LocalDate.now(),VISADO, true);
+        Iteracion iteracion4Libro3 = new Iteracion("rodrigonina",LocalDate.now(),ENVIO_DE_MAIL, false);
         iteraciones3.add(iteracion1Libro3);
         iteraciones3.add(iteracion2Libro3);
         iteraciones3.add(iteracion3Libro3);
         iteraciones3.add(iteracion4Libro3);
 
         List<Iteracion> iteraciones4 = new ArrayList<>();
-        Iteracion iteracion1Libro4 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
+        Iteracion iteracion1Libro4 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, false);
         iteraciones4.add(iteracion1Libro4);
 
         List<Iteracion> iteraciones5 = new ArrayList<>();
-        Iteracion iteracion1Libro5 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
+        Iteracion iteracion1Libro5 = new Iteracion("rodrigonina",LocalDate.now(),DIGITALIZACION, false);
         iteraciones5.add(iteracion1Libro5);
 
         Hoja hoja = new Hoja(cliente1,cliente2,libro1,iteraciones);

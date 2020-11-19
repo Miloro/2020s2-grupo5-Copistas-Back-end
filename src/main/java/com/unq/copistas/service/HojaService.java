@@ -74,4 +74,9 @@ public class HojaService {
     public Hoja getHojaPorTituloLibro(String titulo){
         return hojaDeRutaRepository.findHojaByLibro_Titulo(titulo);
     }
+
+    public List<Hoja> getTareasAsignadasAlColaborador(String usuarioColaborador) {
+        return hojaDeRutaRepository.findAllByHistorialDeEstado_PersonaEncargadaContainingAndHistorialDeEstado_TareaTerminadaFalse(usuarioColaborador);
+    }
+
 }
