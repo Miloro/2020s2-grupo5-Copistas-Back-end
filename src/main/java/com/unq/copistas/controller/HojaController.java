@@ -1,6 +1,7 @@
 package com.unq.copistas.controller;
 
 import com.unq.copistas.controller.dtos.HojaDTO;
+import com.unq.copistas.controller.dtos.TareaAsignadaDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.*;
 import com.unq.copistas.security.service.UsuarioService;
@@ -110,7 +111,7 @@ public class HojaController {
 
 
     @GetMapping("/hojaderuta/historial/colaborador")
-    public List<Hoja> getTareasAsignadasAlColaborador(
+    public List<TareaAsignadaDTO> getTareasAsignadasAlColaborador(
             @RequestParam(value="usuario") String usuarioColaborador){
             return hojaService.getTareasAsignadasAlColaborador(usuarioColaborador);
     }

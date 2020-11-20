@@ -125,9 +125,9 @@ public class FakeData implements ApplicationRunner {
 
         List<Iteracion> iteraciones3 = new ArrayList<>();
         Iteracion iteracion1Libro3 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, true);
-        Iteracion iteracion2Libro3 = new Iteracion("rodrigonina",LocalDate.now(),CORRECION, true);
+        Iteracion iteracion2Libro3 = new Iteracion("rodrigombia",LocalDate.now(),CORRECION, true);
         Iteracion iteracion3Libro3 = new Iteracion("juana",LocalDate.now(),VISADO, true);
-        Iteracion iteracion4Libro3 = new Iteracion("rodrigonina",LocalDate.now(),ENVIO_DE_MAIL, false);
+        Iteracion iteracion4Libro3 = new Iteracion("rodrigombia",LocalDate.now(),ENVIO_DE_MAIL, false);
         iteraciones3.add(iteracion1Libro3);
         iteraciones3.add(iteracion2Libro3);
         iteraciones3.add(iteracion3Libro3);
@@ -138,7 +138,7 @@ public class FakeData implements ApplicationRunner {
         iteraciones4.add(iteracion1Libro4);
 
         List<Iteracion> iteraciones5 = new ArrayList<>();
-        Iteracion iteracion1Libro5 = new Iteracion("rodrigonina",LocalDate.now(),DIGITALIZACION, false);
+        Iteracion iteracion1Libro5 = new Iteracion("rodrigombia",LocalDate.now(),DIGITALIZACION, false);
         iteraciones5.add(iteracion1Libro5);
 
         Hoja hoja = new Hoja(cliente1,cliente2,libro1,iteraciones);
