@@ -25,7 +25,7 @@ public class JwtProvider {
         SecretKey key = getKey();
         return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }

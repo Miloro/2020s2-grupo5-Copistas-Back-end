@@ -1,16 +1,17 @@
 package com.unq.copistas.controller;
 
 import com.unq.copistas.controller.dtos.HojaDTO;
+import com.unq.copistas.controller.dtos.TareaAsignadaDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
-import com.unq.copistas.model.Cliente;
-import com.unq.copistas.model.Hoja;
-import com.unq.copistas.model.Iteracion;
-import com.unq.copistas.model.Libro;
+import com.unq.copistas.model.*;
+import com.unq.copistas.security.service.UsuarioService;
 import com.unq.copistas.service.ClienteService;
 import com.unq.copistas.service.HojaService;
 import com.unq.copistas.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "*")
+
 @RequestMapping("/api")
 public class HojaController {
 
@@ -32,7 +33,10 @@ public class HojaController {
     @Autowired
     private LibroService libroService;
 
+    @Autowired
+    private UsuarioService usuarioService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/hojaderuta")
     public Hoja crearHojaDeRuta(@Valid @RequestBody HojaDTO hojaDTO) throws ResourceNotFoundException {
 
@@ -59,6 +63,7 @@ public class HojaController {
         return ResponseEntity.ok().body(hoja);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/hojaderuta/{id}")
     public ResponseEntity<Hoja> updateHojaDeRuta(
             @PathVariable(value = "id") Long hojaDeRutaId,
@@ -68,6 +73,7 @@ public class HojaController {
         return ResponseEntity.ok(updatedHoja);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/hojaderuta/{id}")
     public Map<String,Boolean> deleteHojaDeRuta(@PathVariable(value = "id") Long hojaDeRutaId) throws  Exception{
         Hoja hoja = hojaService.deleteHojaDeRuta(hojaDeRutaId);
@@ -82,12 +88,32 @@ public class HojaController {
         return ResponseEntity.ok().body(hoja);
     }
 
+    @GetMapping("hojaderuta/libro")
+    public ResponseEntity<Hoja> buscarHojaDeRutaPorIdDeLibro(@RequestParam(value="titulo") String titulo){
+        Hoja hoja = hojaService.getHojaPorTituloLibro(titulo);
+        return ResponseEntity.ok().body(hoja);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/hojaderuta/historial/{id}")
     public ResponseEntity<Hoja> updateHistorialHojaDeRuta(
             @PathVariable(value = "id") Long hojaDeRutaId,
             @Valid @RequestBody Iteracion nuevaIteracion)
             throws ResourceNotFoundException {
-        final Hoja updatedHoja = hojaService.updateHistorialHojaDeRuta(hojaDeRutaId, nuevaIteracion);
-        return ResponseEntity.ok(updatedHoja);
+        if(usuarioService.existsByNombreUsuario(nuevaIteracion.getPersonaEncargada())){
+            nuevaIteracion.setTareaTerminada(false);
+            final Hoja updatedHoja = hojaService.updateHistorialHojaDeRuta(hojaDeRutaId, nuevaIteracion);
+            return ResponseEntity.ok(updatedHoja);
+        }else{
+            return new ResponseEntity(new Mensaje("no existe un colaborador con ese nombre"), HttpStatus.BAD_REQUEST);
+        }
     }
+
+
+    @GetMapping("/hojaderuta/historial/colaborador")
+    public List<TareaAsignadaDTO> getTareasAsignadasAlColaborador(
+            @RequestParam(value="usuario") String usuarioColaborador){
+            return hojaService.getTareasAsignadasAlColaborador(usuarioColaborador);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.unq.copistas.service;
 
+import com.unq.copistas.controller.dtos.TareaAsignadaDTO;
 import com.unq.copistas.exception.ResourceNotFoundException;
 import com.unq.copistas.model.*;
 import com.unq.copistas.repository.HojaDeRutaRepository;
@@ -68,7 +69,15 @@ public class HojaService {
         nuevaIteracion.setHoja(hoja);
         hoja.agregarUnEstadoDeIteracionEnElHistorial(nuevaIteracion);
         return hojaDeRutaRepository.save(hoja);
+    }
 
+    @Transactional
+    public Hoja getHojaPorTituloLibro(String titulo){
+        return hojaDeRutaRepository.findHojaByLibro_Titulo(titulo);
+    }
 
+    @Transactional
+    public List<TareaAsignadaDTO> getTareasAsignadasAlColaborador(String usuarioColaborador){
+        return hojaDeRutaRepository.getTareasAsignadasPara(usuarioColaborador);
     }
 }

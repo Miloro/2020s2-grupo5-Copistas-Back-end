@@ -1,6 +1,7 @@
 package com.unq.copistas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.unq.copistas.model.enums.EstadoDeIteracion;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -21,14 +22,17 @@ public class Iteracion {
 
     private EstadoDeIteracion tareaAsignada;
 
+    private Boolean tareaTerminada;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Hoja hoja;
 
-    public Iteracion(String personaEncargada, LocalDate fechaAsignacion, EstadoDeIteracion tareaAsignada) {
+    public Iteracion(String personaEncargada, LocalDate fechaAsignacion, EstadoDeIteracion tareaAsignada, Boolean tareaTerminada) {
         this.personaEncargada = personaEncargada;
         this.fechaAsignacion = fechaAsignacion;
         this.tareaAsignada = tareaAsignada;
+        this.tareaTerminada = tareaTerminada;
     }
 
     public Iteracion() {
@@ -72,6 +76,14 @@ public class Iteracion {
 
     public void setHoja(Hoja hoja) {
         this.hoja = hoja;
+    }
+
+    public Boolean getTareaTerminada() {
+        return tareaTerminada;
+    }
+
+    public void setTareaTerminada(Boolean tareaTerminada) {
+        this.tareaTerminada = tareaTerminada;
     }
 }
 

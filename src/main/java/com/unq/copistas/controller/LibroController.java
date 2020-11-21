@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "*")
+
 @RequestMapping("/api")
 public class LibroController {
 
@@ -32,6 +32,7 @@ public class LibroController {
         return libroService.getAllLibros();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("libro/{id}")
     public ResponseEntity<Libro> getLibroPorId(@PathVariable(value = "id") Long libroId) throws ResourceNotFoundException{
         Libro libro = libroService.getLibroById(libroId);
@@ -43,11 +44,11 @@ public class LibroController {
             @PathVariable(value = "id") Long libroId,
             @Valid @RequestBody Libro libroDetails)
             throws ResourceNotFoundException {
-        System.out.print(libroId);
         final Libro updatedLibro = libroService.updatelibro(libroId, libroDetails);
         return ResponseEntity.ok(updatedLibro);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/libro/{id}")
     public Map<String,Boolean> deleteLibro(@PathVariable(value = "id") Long libroId) throws  Exception{
         Libro libro = libroService.deleteLibro(libroId);
@@ -60,4 +61,6 @@ public class LibroController {
     public List<Libro> buscarLibroPorNombre(@RequestParam(value="titulo") String titulo){
         return libroService.buscarLibroPorTitulo(titulo);
     }
+
+
 }

@@ -1,34 +1,45 @@
 package com.unq.copistas;
 
 import com.unq.copistas.model.*;
+import com.unq.copistas.model.enums.Idioma;
+import com.unq.copistas.model.enums.NivelDiscapacidadVisual;
+import com.unq.copistas.model.enums.Sexo;
 import com.unq.copistas.repository.ClienteRepository;
 import com.unq.copistas.repository.HojaDeRutaRepository;
 import com.unq.copistas.repository.LibroRepository;
 import com.unq.copistas.security.entity.Rol;
+import com.unq.copistas.security.entity.Usuario;
 import com.unq.copistas.security.enums.RolNombre;
 import com.unq.copistas.security.repository.UsuarioRepository;
 import com.unq.copistas.security.service.RolService;
+import com.unq.copistas.security.service.UsuarioService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import static com.unq.copistas.model.EstadoDeIteracion.*;
+import static com.unq.copistas.model.enums.EstadoDeIteracion.*;
 
 
 @Component
 public class FakeData implements ApplicationRunner {
-
+    private final UsuarioService usuarioService;
+    private final PasswordEncoder passwordEncoder;
     private final ClienteRepository clienteRepository;
     private final HojaDeRutaRepository hojaDeRutaRepository;
     private final LibroRepository libroRepository;
     private final UsuarioRepository usuarioRepository;
     private final RolService rolService;
 
-    public FakeData(ClienteRepository clienteRepository, HojaDeRutaRepository hojaDeRutaRepository, LibroRepository libroRepository, UsuarioRepository usuarioRepository, RolService rolService) {
+    public FakeData(UsuarioService usuarioService, PasswordEncoder passwordEncoder, ClienteRepository clienteRepository, HojaDeRutaRepository hojaDeRutaRepository, LibroRepository libroRepository, UsuarioRepository usuarioRepository, RolService rolService) {
+        this.usuarioService = usuarioService;
+        this.passwordEncoder = passwordEncoder;
         this.clienteRepository = clienteRepository;
         this.hojaDeRutaRepository = hojaDeRutaRepository;
         this.libroRepository = libroRepository;
@@ -39,7 +50,7 @@ public class FakeData implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        Cliente cliente1 = new Cliente("cliente1","cliente1",111,1,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.TOTAL);
+        Cliente cliente1 = new Cliente("cliente1","cliente1",111,1,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(), Sexo.HOMBRE, NivelDiscapacidadVisual.TOTAL);
         Cliente cliente2 = new Cliente("cliente2","cliente2",222,2,"cliente2","cliente2","cliente2",2,3,"cliente2",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.PARCIAL);
         Cliente cliente3 = new Cliente("cliente3","cliente3",333,3,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.HOMBRE,NivelDiscapacidadVisual.PARCIAL);
         Cliente cliente5 = new Cliente("cliente5","cliente5",555,5,"cliente1","cliente1","cliente1",2,3,"cliente1",LocalDate.now(),Sexo.MUJER,NivelDiscapacidadVisual.NINGUNA);
@@ -64,7 +75,7 @@ public class FakeData implements ApplicationRunner {
         clienteRepository.save(cliente11);
         clienteRepository.save(cliente12);
 
-        Libro libro1 = new Libro("El señor de los anillos la comunidad del anillos","John Ronald Reuel","Tolkien ","dgasdgs","1412",Idioma.ESPAÑOL,"fantasia",true,true);
+        Libro libro1 = new Libro("El señor de los anillos la comunidad del anillos","John Ronald Reuel","Tolkien ","dgasdgs","1412", Idioma.ESPAÑOL,"fantasia",true,true);
         Libro libro2 = new Libro("La llamada de Cthulhu","Howard Phillips","Lovecraft","raspadita","2",Idioma.ESPAÑOL,"terror cosmico",false,true);
         Libro libro3 = new Libro("El caballero de la armadura oxidada","Robert","Fisher","raspadita","2",Idioma.ESPAÑOL,"Fiction",true,true);
         Libro libro4 = new Libro("El fin de la eternidad","Isaac","Asimov","raspadita","2",Idioma.INGLES,"Science Fiction",false,true);
@@ -91,20 +102,20 @@ public class FakeData implements ApplicationRunner {
 
 
         List<Iteracion> iteraciones = new ArrayList<>();
-        Iteracion iteracion1Libro1 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
-        Iteracion iteracion2Libro1 = new Iteracion("carlos",LocalDate.now(),CORRECION);
-        Iteracion iteracion3Libro1 = new Iteracion("juana",LocalDate.now(),VISADO);
+        Iteracion iteracion1Libro1 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, true);
+        Iteracion iteracion2Libro1 = new Iteracion("carlos",LocalDate.now(),CORRECION, true);
+        Iteracion iteracion3Libro1 = new Iteracion("juana",LocalDate.now(),VISADO, false);
         iteraciones.add(iteracion1Libro1);
         iteraciones.add(iteracion2Libro1);
         iteraciones.add(iteracion3Libro1);
 
         List<Iteracion> iteraciones2 = new ArrayList<>();
-        Iteracion iteracion1Libro2 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
-        Iteracion iteracion2Libro2 = new Iteracion("carlos",LocalDate.now(),CORRECION);
-        Iteracion iteracion3Libro2 = new Iteracion("juana",LocalDate.now(),VISADO);
-        Iteracion iteracion4Libro2 = new Iteracion("ricardo",LocalDate.now(),ENVIO_DE_MAIL);
-        Iteracion iteracion5Libro2 = new Iteracion("ruperta",LocalDate.now(),IMPRESION_EN_BRAILE);
-        Iteracion iteracion6Libro2 = new Iteracion("cleotilde",LocalDate.now(),ANILLADO);
+        Iteracion iteracion1Libro2 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, true);
+        Iteracion iteracion2Libro2 = new Iteracion("carlos",LocalDate.now(),CORRECION, true);
+        Iteracion iteracion3Libro2 = new Iteracion("juana",LocalDate.now(),VISADO, true);
+        Iteracion iteracion4Libro2 = new Iteracion("ricardo",LocalDate.now(),ENVIO_DE_MAIL, true);
+        Iteracion iteracion5Libro2 = new Iteracion("ruperta",LocalDate.now(),IMPRESION_EN_BRAILE, true);
+        Iteracion iteracion6Libro2 = new Iteracion("cleotilde",LocalDate.now(),ANILLADO, false);
         iteraciones2.add(iteracion1Libro2);
         iteraciones2.add(iteracion2Libro2);
         iteraciones2.add(iteracion3Libro2);
@@ -113,21 +124,21 @@ public class FakeData implements ApplicationRunner {
         iteraciones2.add(iteracion6Libro2);
 
         List<Iteracion> iteraciones3 = new ArrayList<>();
-        Iteracion iteracion1Libro3 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
-        Iteracion iteracion2Libro3 = new Iteracion("carlos",LocalDate.now(),CORRECION);
-        Iteracion iteracion3Libro3 = new Iteracion("juana",LocalDate.now(),VISADO);
-        Iteracion iteracion4Libro3 = new Iteracion("ricardo",LocalDate.now(),ENVIO_DE_MAIL);
+        Iteracion iteracion1Libro3 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, true);
+        Iteracion iteracion2Libro3 = new Iteracion("rodrigombia",LocalDate.now(),CORRECION, true);
+        Iteracion iteracion3Libro3 = new Iteracion("juana",LocalDate.now(),VISADO, true);
+        Iteracion iteracion4Libro3 = new Iteracion("rodrigombia",LocalDate.now(),ENVIO_DE_MAIL, false);
         iteraciones3.add(iteracion1Libro3);
         iteraciones3.add(iteracion2Libro3);
         iteraciones3.add(iteracion3Libro3);
         iteraciones3.add(iteracion4Libro3);
 
         List<Iteracion> iteraciones4 = new ArrayList<>();
-        Iteracion iteracion1Libro4 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
+        Iteracion iteracion1Libro4 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION, false);
         iteraciones4.add(iteracion1Libro4);
 
         List<Iteracion> iteraciones5 = new ArrayList<>();
-        Iteracion iteracion1Libro5 = new Iteracion("pepa",LocalDate.now(),DIGITALIZACION);
+        Iteracion iteracion1Libro5 = new Iteracion("rodrigombia",LocalDate.now(),DIGITALIZACION, false);
         iteraciones5.add(iteracion1Libro5);
 
         Hoja hoja = new Hoja(cliente1,cliente2,libro1,iteraciones);
@@ -168,6 +179,14 @@ public class FakeData implements ApplicationRunner {
         Rol rolUser = new Rol(RolNombre.ROLE_USER);
         rolService.save(rolAdmin);
         rolService.save(rolUser);
+
+        Usuario usuario = new Usuario("admin", "admin", "admin@admin.com", passwordEncoder.encode("admin"));
+        Set<Rol> roles = new HashSet<>();
+        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+        roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+        usuario.setRoles(roles);
+        usuarioService.save(usuario);
+
 
 
     }
